@@ -9,6 +9,11 @@
     NODE_ENV=production $(npm bin)/babel src --out-dir lib
     $(npm bin)/pm2 start app.json --env production -i 4
 
+# fmt
+> Auto format sources by prettier.
+
+    $(npm bin)/prettier --write src/**/*.js
+
 # _transpile
 
     $(npm bin)/babel --watch src --out-dir lib
@@ -17,3 +22,4 @@
 
     $(npm bin)/pm2 kill
     DEBUG=engine:ws $(npm bin)/pm2 start app.json --env development --watch --no-daemon -f
+
