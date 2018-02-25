@@ -7,7 +7,7 @@
 > start production server.
 
     NODE_ENV=production $(npm bin)/babel src --out-dir lib
-    $(npm bin)/pm2 start app.json --env production
+    $(npm bin)/pm2 start app.json --env production -i 4
 
 # _transpile
 
@@ -16,4 +16,4 @@
 # _reload_server
 
     $(npm bin)/pm2 kill
-    $(npm bin)/pm2 start lib/server.js --env development --watch --no-daemon -f
+    DEBUG=engine:ws $(npm bin)/pm2 start app.json --env development --watch --no-daemon -f
