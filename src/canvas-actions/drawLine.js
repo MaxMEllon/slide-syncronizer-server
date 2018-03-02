@@ -1,3 +1,3 @@
-module.exports = (payload, db, socket) => {
+module.exports = (payload, socket) => {
   socket.broadcast.emit('canvas/update', JSON.stringify(payload))
 }
