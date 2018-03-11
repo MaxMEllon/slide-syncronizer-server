@@ -1,2 +1,4 @@
+!.keep
 /lib
 /db.*
+/public/*

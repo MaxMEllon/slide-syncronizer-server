@@ -3,8 +3,8 @@
     {
       "name": "server",
       "script": "lib/server.js",
-      "instances" : "max",
-      "exec_mode" : "cluster",
+      "instances": "max",
+      "exec_mode": "cluster",
       "env_production": {
         "NODE_ENV": "production"
       },

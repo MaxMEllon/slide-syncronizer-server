@@ -21,5 +21,5 @@
 # _reload_server
 
     $(npm bin)/pm2 kill
-    DEBUG=engine:* $(npm bin)/pm2 start app.json --env development --watch --no-daemon -f
+    DEBUG=server*,engine:* $(npm bin)/pm2 start app.json --env development --watch --no-daemon -f
 
