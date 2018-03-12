@@ -34,9 +34,9 @@ const globPromisify = () => {
   )
 }
 
-app.use(express.static('public'))
+if (dev) app.use(express.static('public'))
 
-app.get('/pages', (req, res) =>
+app.get('/api/pages', (req, res) =>
   globPromisify()
     .then(pages => JSON.stringify(pages) |> res.send)
     .catch(err => res.send(err))
