@@ -53,7 +53,7 @@ io.on('connection', socket => {
   // canvas
   socket.on('canvas/drawLine', payload => drawLine(payload, socket))
   socket.on('canvas/onUp', () => onUp(socket))
-  socket.on('canvas/clearRequest', () => io.emit('canvas/clear'))
+  socket.on('canvas/clear', () => io.emit('canvas/clear'))
   // misc
   socket.send('socket/connected', { message: '接続しました' })
 })
