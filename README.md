@@ -24,6 +24,11 @@ Global dependencies
 - **npm** >= v5.5.1
 - **saku** >= v0.11.0
 
+Default port
+---
+- 8080: Socker server
+- 8765: REST API server
+
 LICENSE
 ---
 
