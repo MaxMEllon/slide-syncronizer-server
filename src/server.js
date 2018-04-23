@@ -17,6 +17,7 @@ const db = new LocalStorage(`./db.${env}`)
 const dev = env === 'development'
 
 app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
   next()
@@ -57,6 +58,9 @@ io.on('connection', socket => {
   socket.send('socket/connected', { message: '接続しました' })
 })
 
-http.listen(8080, () => console.log('listening on *:8080'))
+const httpPort = 8080 + parseInt(process.env.NODE_APP_INSTANCE || 0)
+const appPort = 8765 + parseInt(process.env.NODE_APP_INSTANCE || 0)
 
-app.listen(8765, () => console.log('listening on *:8765'))
+http.listen(httpPort, () => console.log(`listening on *:${httpPort}`))
+
+app.listen(appPort, () => console.log(`listening on *:${appPort}`))
