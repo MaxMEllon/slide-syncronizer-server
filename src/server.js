@@ -25,22 +25,11 @@ app.use((req, res, next) => {
 
 app.options('*', (req, res) => res.sendStatus(200))
 
-const globPromisify = () => {
-  return new Promise((resolve, reject) =>
-    glob('public/*.jpg', (err, files) => {
-      if (err) reject(err)
-      resolve(files.map(f => f.replace('public', '')))
-    })
-  )
-}
+const pages = JSON.stringify(glob.sync('public/*.jpg').map(f => f.replace('public', '')))
 
 if (dev) app.use(express.static('public'))
 
-app.get('/api/pages', (req, res) =>
-  globPromisify()
-    .then(pages => JSON.stringify(pages) |> res.send)
-    .catch(err => res.send(err))
-)
+app.get('/api/pages', (req, res) => res.send(pages))
 
 io.adapter(redis({ host: 'localhost', port: 6379 }))
 
